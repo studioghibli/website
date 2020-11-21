@@ -1,0 +1,59 @@
+.experienceTitleContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background: url(../public/cornell.jpg) center left no-repeat;
+    background-size: cover;
+    height: 180px;
+}
+
+.timeline {
+    padding-top: 100px !important;
+}
+
+.title {
+    color: white;
+    font-family: Montserrat;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 55px;
+    margin-bottom: 0px;
+}
+
+.overlapLeft {
+    display: flex;
+    flex-flow: row;
+    position: relative;
+    justify-content: flex-end;
+    padding: 50px;
+    max-width: 1500px;
+}
+
+.overlayLeft {
+    position: absolute;
+    left: 100px;
+    top: calc(50% - 150px);
+}
+
+.overlapRight {
+    display: flex;
+    flex-flow: row;
+    position: relative;
+    justify-content: flex-start;
+    padding: 50px;
+    max-width: 1500px;
+}
+
+.overlayRight {
+    position: absolute;
+    right: 100px;
+    top: calc(50% - 115px);
+}
+
+.line {
+    width: 300px;
+    height: 3px;
+    background-color: white;
+}
