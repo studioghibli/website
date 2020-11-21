@@ -1,0 +1,44 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    z-index: 9997;
+    padding: 15px;
+}
+
+.navbar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.name {
+    font-family: Didot;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 46px;
+    color: white;
+}
+
+.anchorLinks {
+    display: flex;
+    align-items: center;
+}
+
+.anchorLinks > a {
+    color: white;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 29px;
+    padding-left: 40px;
+}

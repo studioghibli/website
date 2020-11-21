@@ -1,0 +1,61 @@
+.image {
+    border: 3px solid #FFFFFF !important;
+    box-sizing: border-box !important;
+    outline: 50px solid white !important;
+    outline-offset: 5px;
+}
+
+.text {
+    color: white;
+    padding: 20px;
+    font-family: Source Code Pro;
+    font-size: 24px;
+    font-style: normal;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    max-width: 700px;
+}
+
+.title {
+    color: white;
+    margin: auto;
+    font-family: Montserrat;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 55px;
+}
+
+.binder {
+    display: flex;
+}
+
+.section {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.leftPane {
+    flex: 1 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.rightPane {
+    /* padding-left: 40px; */
+    flex: 1.5 1.5;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.line {
+    width: 350px;
+    height: 3px;
+    background-color: white;
+    margin-bottom: 60px;
+}
