@@ -2,18 +2,18 @@ import React from 'react'
 import Image from 'next/image'
 import Card from './Components/Card'
 
-import aboutStyles from '../styles/About.module.css'
 import interestsStyles from '../styles/Interests.module.css'
 
 export default function Interests() {
     return (
-        <div className={aboutStyles.section}>
-            <div className={interestsStyles.experienceTitleContainer}>
-                <h1 className={interestsStyles.title}>Interests</h1>
-                <hr className={interestsStyles.line} />
-            </div>
+        <div className={interestsStyles.section}>
             <div className={interestsStyles.overlapLeft}>
-                <Image src="/idp.jpg" width={850} height={500} />
+                <Image
+                    src="/idp.jpg"
+                    width={850}
+                    height={500}
+                    alt="photo of member of Intergroup Dialogue Project"
+                />
                 <div className={interestsStyles.overlayLeft}>
                     <Card
                         style={{ marginBottom: 0, backgroundColor: "black" }}
@@ -33,7 +33,12 @@ export default function Interests() {
                 </div>
             </div>
             <div className={interestsStyles.overlapRight}>
-                <Image src="/rise.jpg" width={900} height={500} />
+                <Image
+                    src="/rise.jpg"
+                    width={900}
+                    height={500}
+                    alt="photo of members of Rise Dance Group"
+                />
                 <div className={interestsStyles.overlayRight}>
                     <Card
                         style={{ marginBottom: 0, backgroundColor: "black" }}

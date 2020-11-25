@@ -17,6 +17,7 @@ export default function About() {
                         height={350}
                         objectFit='cover'
                         objectPosition='50% 10%'
+                        alt="photo of Linda"
                     />
                 </div>
                 <div className={aboutStyles.rightPane}>
@@ -24,6 +25,8 @@ export default function About() {
                         Hi! I'm Linda, a senior studying computer science at Cornell University.
                         I love solving problems, whether it's working on a coding project,
                         writing mathematical proofs, or figuring out whether a straw has one or two holes (it's two).
+                        I am pursuing a career in software development and I'm particularly interested
+                        in cloud platforms and services.
                     </p>
                 </div>
             </div>

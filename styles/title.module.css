@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+}
+
+.title {
+    color: white;
+    font-family: Montserrat;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 55px;
+    margin-bottom: 0px;
+}
+
+.line {
+    height: 3px;
+    background-color: white;
+}

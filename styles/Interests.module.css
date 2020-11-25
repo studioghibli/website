@@ -8,18 +8,12 @@
     height: 180px;
 }
 
-.timeline {
-    padding-top: 100px !important;
-}
-
-.title {
-    color: white;
-    font-family: Montserrat;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 55px;
-    margin-bottom: 0px;
+.section {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    background-color: black;
+    align-items: center;
 }
 
 .overlapLeft {
@@ -28,7 +22,7 @@
     position: relative;
     justify-content: flex-end;
     padding: 50px;
-    max-width: 1500px;
+    width: 1400px;
 }
 
 .overlayLeft {
@@ -43,7 +37,7 @@
     position: relative;
     justify-content: flex-start;
     padding: 50px;
-    max-width: 1500px;
+    width: 1400px;
 }
 
 .overlayRight {

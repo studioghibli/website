@@ -1,29 +1,4 @@
-.experienceTitleContainer {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    background: url(../public/cornell.jpg) center left no-repeat;
-    background-size: cover;
-    height: 180px;
-}
-
-.timeline {
-    padding-top: 100px !important;
-}
-
-.title {
-    color: white;
-    font-family: Montserrat;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 55px;
-    margin-bottom: 0px;
-}
-
-.line {
-    width: 350px;
-    height: 3px;
-    background-color: white;
+.section {
+    padding-top: 60px;
+    background-color: black;
 }
