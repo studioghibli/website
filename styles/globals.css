@@ -44,11 +44,3 @@ a {
   justify-content: flex-start;
   padding-left: 30px;
 }
-
-/* :target::before {
-  display: block; 
-  content: ""; 
-  height: 100px;
-  margin: -100px 0 0;
-  visibility: hidden; 
-} */
