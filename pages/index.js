@@ -39,7 +39,20 @@ export default function Home() {
     }
   }, [])
 
-  // document.getElementsByTagName("html")[0].setAttribute("lang", "en");
+  const isMounted = () => {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+      setMounted(true)
+      return () => {
+        setMounted(false)
+      }
+    });
+    return mounted;
+  };
+
+  useEffect(() => {
+    document.getElementsByTagName("html")[0].setAttribute("lang", "en");
+  }, [isMounted])
 
   return (
     <div>
