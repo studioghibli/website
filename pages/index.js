@@ -11,7 +11,7 @@ import About from './about'
 import Experience from './experience'
 import Interests from './interests'
 
-import Title from './Components/Title'
+import Title from './components/Title'
 
 import { useEffect, useState } from 'react'
 
