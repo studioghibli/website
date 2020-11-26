@@ -39,7 +39,7 @@ export default function Home() {
     }
   }, [])
 
-  document.getElementsByTagName("html")[0].setAttribute("lang", "en");
+  // document.getElementsByTagName("html")[0].setAttribute("lang", "en");
 
   return (
     <div>
