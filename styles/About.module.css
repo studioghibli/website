@@ -27,37 +27,64 @@
     line-height: 55px;
 }
 
-.binder {
-    display: flex;
-}
-
-.section {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    background-color: black;
-    padding-top: 70px;
-    padding-bottom: 80px;
-}
-
-.leftPane {
-    flex: 1 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 40px;
-}
-
-.rightPane {
-    flex: 1.5 1.5;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
 .line {
     width: 350px;
     height: 3px;
     background-color: white;
     margin-bottom: 60px;
+}
+
+@media only screen and (min-width: 1150px) {
+    .section {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        background-color: black;
+        padding-top: 70px;
+        padding-bottom: 80px;
+    }
+
+    .binder {
+        display: flex;
+    }
+
+    .leftPane {
+        flex: 1 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 40px;
+    }
+    
+    .rightPane {
+        flex: 1.5 1.5;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .section {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        text-align: center;
+        background-color: black;
+        padding-top: 70px;
+        padding-bottom: 80px;
+    }
+
+    .binder {
+        align-items: center;
+    }
+    
+    .rightPane {
+        text-align: -webkit-center;
+        align-items: center;
+    }
+    
+    .image {
+        align-self: center;
+    }
 }

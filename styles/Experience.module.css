@@ -1,4 +1,14 @@
-.section {
+.sectionDesktop {
     padding-top: 60px;
     background-color: black;
+}
+
+.sectionMobile {
+    padding: 60px 0px 0px 30px;
+    background-color: black;
+    /* align-items: center; */
+}
+
+.timeline {
+    margin: auto;
 }

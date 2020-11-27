@@ -1,53 +1,115 @@
-.experienceTitleContainer {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    background: url(../public/cornell.jpg) center left no-repeat;
-    background-size: cover;
-    height: 180px;
+@media only screen and (min-width: 1450px) {
+    .section {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        background-color: black;
+        align-items: center;
+    }
+    
+    .overlapLeft {
+        display: flex;
+        flex-flow: row;
+        position: relative;
+        justify-content: flex-end;
+        padding: 50px;
+        width: 1400px;
+    }
+
+    .overlayLeft {
+        position: absolute;
+        left: 100px;
+        top: calc(50% - 150px);
+    }
+
+    .overlapRight {
+        display: flex;
+        flex-flow: row;
+        position: relative;
+        justify-content: flex-start;
+        padding: 50px;
+        width: 1400px;
+    }
+
+    .overlayRight {
+        position: absolute;
+        right: 100px;
+        top: calc(50% - 115px);
+    }
 }
 
-.section {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    background-color: black;
-    align-items: center;
-}
 
-.overlapLeft {
-    display: flex;
-    flex-flow: row;
-    position: relative;
-    justify-content: flex-end;
-    padding: 50px;
-    width: 1400px;
-}
+@media only screen and (min-width: 1150px) and (max-width: 1450px) {
+    .section {
+        display: flex;
+        flex-flow: column;
+        background-color: black;
+    }
 
-.overlayLeft {
-    position: absolute;
-    left: 100px;
-    top: calc(50% - 150px);
-}
+    .overlapLeft {
+        display: flex;
+        flex-flow: row;
+        position: relative;
+        justify-content: flex-end;
+        padding: 50px;
+        min-width: 1150px;
+        max-width: 1400px
+    }
+    
+    .overlayLeft {
+        position: absolute;
+        left: 100px;
+        top: calc(50% - 150px);
+    }
 
-.overlapRight {
-    display: flex;
-    flex-flow: row;
-    position: relative;
-    justify-content: flex-start;
-    padding: 50px;
-    width: 1400px;
-}
+    .overlapRight {
+        display: flex;
+        flex-flow: row;
+        position: relative;
+        justify-content: flex-start;
+        padding: 50px;
+        min-width: 1150px;
+        max-width: 1400px;
+    }
 
-.overlayRight {
-    position: absolute;
-    right: 100px;
-    top: calc(50% - 115px);
-}
+    .overlayRight {
+        position: absolute;
+        right: 100px;
+        top: calc(50% - 115px);
+    }
+  }
 
-.line {
-    width: 300px;
-    height: 3px;
-    background-color: white;
-}
+  @media only screen and (max-width: 1150px) {
+    .section {
+        display: flex;
+        flex-flow: column;
+        background-color: black;
+        padding: 50px;
+    }
+
+    .overlapLeft {
+        display: flex;
+        flex-flow: column;
+        margin: auto;
+        padding: 20px
+    }
+
+    .overlayLeft {
+        position: relative;
+        padding: 40px 10px 20px 10px;
+        margin: auto;
+    }
+
+    .overlapRight {
+        display: flex;
+        flex-flow: column;
+        margin: auto;
+        padding: 20px
+    }
+
+    .overlayRight {
+        position: relative;
+        padding: 40px 10px 20px 10px;
+        margin: auto;
+    }
+  }

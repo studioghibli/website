@@ -1,43 +1,19 @@
-import Head from 'next/head'
-import Link from 'next/link'
+
 import Image from 'next/image'
 
-import AnchorLink from 'react-anchor-link-smooth-scroll'
-
-import navStyles from '../styles/nav.module.css'
 import styles from '../styles/Home.module.css'
 
 import About from './about'
 import Experience from './experience'
 import Interests from './interests'
 
+import Nav from './components/Nav'
 import Title from './components/Title'
 
 import { useEffect, useState } from 'react'
 
 
 export default function Home() {
-
-  const [headerBackgroundColor, setHeaderBackgroundColor] = useState("");
-
-  useEffect(() => {
-    function onScroll() {
-      const currentScroll = window.pageYOffset;
-      const viewHeight = 0.2 * Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-
-      if (currentScroll > viewHeight) {
-        setHeaderBackgroundColor("black")
-      } else {
-        setHeaderBackgroundColor("")
-      }
-    }
-
-    window.addEventListener('scroll', onScroll)
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    }
-  }, [])
 
   const isMounted = () => {
     const [mounted, setMounted] = useState(false);
@@ -48,7 +24,7 @@ export default function Home() {
       }
     });
     return mounted;
-  };
+  }
 
   useEffect(() => {
     document.getElementsByTagName("html")[0].setAttribute("lang", "en");
@@ -56,28 +32,7 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <title>Linda He</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <header className={navStyles.header} style={{ backgroundColor: headerBackgroundColor }}>
-        <nav className={navStyles.navbar}>
-          {/* name */}
-          <div>
-            <Link href="/">
-              <a className={navStyles.name}>Linda He</a>
-            </Link>
-          </div>
-
-          {/* links */}
-          <div className={navStyles.anchorLinks}>
-            <AnchorLink offset='100' href="#about">About</AnchorLink>
-            <AnchorLink offset='100' href="#experience">Experience</AnchorLink>
-            <AnchorLink offset='100' href="#interests">Interests</AnchorLink>
-          </div>
-        </nav>
-      </header>
+      <Nav />
 
       <section className={styles.hero}>
         <div className={styles.intro}>

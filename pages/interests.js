@@ -16,7 +16,7 @@ export default function Interests() {
                 />
                 <div className={interestsStyles.overlayLeft}>
                     <Card
-                        style={{ marginBottom: 0, backgroundColor: "black" }}
+                        style={{ marginBottom: "0px" }}
                         title="Intergroup Dialogue Project"
                     >
                         <a href="https://idp.cornell.edu" target="_blank">IDP</a> is
@@ -39,7 +39,7 @@ export default function Interests() {
                 />
                 <div className={interestsStyles.overlayRight}>
                     <Card
-                        style={{ marginBottom: 0, backgroundColor: "black" }}
+                        style={{ marginBottom: "0px" }}
                         title="Rise Dance Group"
                     >
                         <a href="https://www.risedancegroupcornell.com/" target="_blank">Rise</a> is
