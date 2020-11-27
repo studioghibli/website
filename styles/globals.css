@@ -6,7 +6,17 @@ body {
   background-attachment: fixed;
   background-size: cover;
   scroll-behavior: smooth;
-  font-language-override: normal;
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    padding: 0;
+    margin: 0;
+    background: url("../public/cornell-mobile.jpg") bottom left no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    scroll-behavior: smooth;
+  }
 }
 
 a {
