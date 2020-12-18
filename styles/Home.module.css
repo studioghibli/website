@@ -33,7 +33,7 @@
 }
 
 .intro * {
-  padding: 0px 50px 50px 50px;
+  padding: 0px 60px 50px 60px;
   color: white;
 }
 
@@ -50,7 +50,7 @@
   font-style: normal;
   font-weight: 300;
   font-size: 64px;
-  line-height: 60px;
+  line-height: 50px;
   margin: 0
 }
 
@@ -156,5 +156,27 @@
 
 .social:hover {
   cursor: pointer;
+  opacity: 1;
+}
+
+.footer {
+  text-align: center;
+  padding-bottom: 40px;
+  background-color: black;
+}
+
+.socialMediaFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.socialFooter {
+  opacity: .7;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.socialFooter:hover {
   opacity: 1;
 }

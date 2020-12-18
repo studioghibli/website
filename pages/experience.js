@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import experienceStyles from '../styles/Experience.module.css'
 import 'antd/dist/antd.css';
 import Card from './components/Card'
+import Image from 'next/image'
 import { Timeline } from 'antd'
 
 function ExperienceMobile() {
@@ -108,8 +109,14 @@ function ExperienceDesktop() {
                         title="Entering College"
                         text="The first class I took in college was object-oriented programming.
                         As I started to understand computer science from a high-level perspective,
-                        I decided to major in computer science."
+                        I decided to major in computer science. Below is a project from this class
+                        where I implemented a path-finding algorithm in Java."
                     />
+                    <div className={experienceStyles.imageWrapper}>
+                        <video autoPlay={true} controls={false} loop={true} width={600}>
+                            <source src="/planetx.mp4" type="video/mp4" />
+                        </video>
+                    </div>
                 </Timeline.Item>
                 <Timeline.Item color={"black"} label={"2019"}>
                     <Card
@@ -123,19 +130,44 @@ function ExperienceDesktop() {
                         </a> team with two other interns to migrate a chatbot extension
                         used internally by developers to a new platform.
                     </Card>
+                    <div className={experienceStyles.imageWrapper}>
+                        <Image
+                            src="/explore.jpg"
+                            width={600}
+                            height={300}
+                            objectFit='cover'
+                            alt="photo of team in front of Microsoft sign"
+                        />
+                    </div>
                 </Timeline.Item>
                 <Timeline.Item color={"black"} label={"2019"}>
-                    <Card
-                        title="First Hackathon"
-                    >
-                        I joined <a
-                            href="https://plasticfreeoceans.org/"
-                            target="_blank">
-                            Plastic Free Oceans
-                        </a> at Hack for Good at Microsoft where we worked on a plastic monitoring tool.
-                        This was my first experience seeing computer science applied in a context
-                        where the purpose is help others.
-                    </Card>
+                        <Card
+                            title="First Hackathon"
+                        >
+                            I joined <a
+                                href="https://plasticfreeoceans.org/"
+                                target="_blank">
+                                Plastic Free Oceans
+                            </a> at Hack for Good at Microsoft where we worked on a plastic monitoring tool.
+                            This was my first experience seeing computer science applied in a context
+                            where the purpose is help others. The picture below links to a Dash application that
+                            visualizes the geospatial distribution of plastic debris in rivers, as collected by
+                            the river cameras.
+                        </Card>
+                        <div className={experienceStyles.imageWrapper}>
+                            <a className={experienceStyles.imageLink}
+                                href="https://riverapp-test.herokuapp.com/"
+                                target="_blank"
+                                aria-label="Plastic Free Oceans">                        
+                                <Image
+                                    src="/pfo-1.png"
+                                    width={600}
+                                    height={300}
+                                    objectFit='cover'
+                                    alt="map visualization of Plastic Free Oceans"
+                                />
+                            </a>
+                        </div>
                 </Timeline.Item>
                 <Timeline.Item color={"black"} label={"2019"}>
                     <Card
@@ -165,7 +197,7 @@ function ExperienceDesktop() {
                         title="Hack for Social Justice"
                     >
                         This time, I joined two teams: <a
-                            href="https://leat.netlify.app/"
+                            href="https://leat.netlify.app/about"
                             target="_blank">
                             LEAT
                         </a> and a prosecutorial misconduct tracker. The goal was to create

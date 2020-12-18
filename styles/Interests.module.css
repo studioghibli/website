@@ -77,9 +77,9 @@
         right: 100px;
         top: calc(50% - 115px);
     }
-  }
+}
 
-  @media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 1150px) {
     .section {
         display: flex;
         flex-flow: column;
@@ -112,4 +112,9 @@
         padding: 40px 10px 20px 10px;
         margin: auto;
     }
-  }
+}
+
+
+.imageLink:hover {
+    opacity: .5;
+}

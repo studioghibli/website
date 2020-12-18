@@ -88,6 +88,31 @@ export default function Home() {
           <Interests />
         </div>
       </main>
+      <footer className={styles.footer}>
+        <div className={styles.socialMediaFooter}>
+            <div className={styles.socialFooter}>
+              <a href="https://www.linkedin.com/in/linda-fang-he/"
+                target="_blank"
+                aria-label="LinkedIn">
+                <Image src={"/linkedin.png"} height={30} width={30} alt="LinkedIn logo" />
+              </a>
+            </div>
+            <div className={styles.socialFooter}>
+              <a href="mailto:lfh32@cornell.edu"
+                target="_blank"
+                aria-label="Gmail">
+                <Image src={"/gmail.svg"} height={30} width={40} alt="Gmail logo" />
+              </a>
+            </div>
+            <div className={styles.socialFooter}>
+              <a href="https://github.com/studioghibli"
+                target="_blank"
+                aria-label="GitHub">
+                <Image src={"/github.svg"} height={30} width={30} alt="GitHub logo" />
+              </a>
+            </div>
+          </div>
+      </footer>
     </div>
   )
 }
