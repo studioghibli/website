@@ -34,8 +34,8 @@ function NavDesktop(props) {
           {/* links */}
           <div className={navStyles.anchorLinks}>
             <AnchorLink offset='100' href="#about">About</AnchorLink>
-            <AnchorLink offset='100' href="#experience">Experience</AnchorLink>
-            <AnchorLink offset='100' href="#interests">Interests</AnchorLink>
+            <AnchorLink offset='100' href="#journey">Journey</AnchorLink>
+            <AnchorLink offset='100' href="#passions">Passions</AnchorLink>
           </div>
         </nav>
       </header>
@@ -49,7 +49,7 @@ export default function Nav(props) {
   useEffect(() => {
     function onScroll() {
       const currentScroll = window.pageYOffset;
-      const viewHeight = 0.2 * Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+      const viewHeight = 0.15 * Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
       if (currentScroll > viewHeight) {
         setHeaderBackgroundColor("black")

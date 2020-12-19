@@ -73,17 +73,17 @@ export default function Home() {
         <div id="about">
           <About />
         </div>
-        <div id="experience">
+        <div id="journey">
           <Title
-            title="Experience"
-            width={350}
+            title="Journey"
+            width={300}
           />
           <Experience />
         </div>
-        <div id="interests">
+        <div id="passions">
           <Title
-            title="Interests"
-            width={290}
+            title="Passions"
+            width={300}
           />
           <Interests />
         </div>
