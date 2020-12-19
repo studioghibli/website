@@ -71,8 +71,7 @@
         justify-content: center;
         text-align: center;
         background-color: black;
-        padding-top: 70px;
-        padding-bottom: 80px;
+        padding: 70px 10px 80px 10px;
     }
 
     .binder {
@@ -86,5 +85,9 @@
     
     .image {
         align-self: center;
+    }
+
+    .leftPane {
+        padding: 0px 20px 0px 20px;
     }
 }

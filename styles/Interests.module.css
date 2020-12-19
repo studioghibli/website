@@ -84,33 +84,24 @@
         display: flex;
         flex-flow: column;
         background-color: black;
-        padding: 50px;
+        padding: 50px 50px 40px 50px;
     }
 
-    .overlapLeft {
+    .overlayLeft, .overlayRight {
+        position: relative;
+        padding: 40px 0px 20px 0px;
+        margin: auto;
+    }
+
+    .overlapLeft, .overlapRight {
         display: flex;
         flex-flow: column;
         margin: auto;
-        padding: 20px
+        padding: 40px 0px 40px 0px
     }
 
-    .overlayLeft {
-        position: relative;
-        padding: 40px 10px 20px 10px;
-        margin: auto;
-    }
-
-    .overlapRight {
-        display: flex;
-        flex-flow: column;
-        margin: auto;
-        padding: 20px
-    }
-
-    .overlayRight {
-        position: relative;
-        padding: 40px 10px 20px 10px;
-        margin: auto;
+    .imageLink {
+        max-width: 600px;
     }
 }
 
