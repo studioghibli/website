@@ -40,11 +40,11 @@
     .overlayRight {
         position: absolute;
         right: 100px;
-        top: calc(50% - 115px);
+        top: calc(50% - 150px);
     }
 }
 
-/* tablet mode */
+/* adjustable width */
 @media only screen and (min-width: 1150px) and (max-width: 1450px) {
     .section {
         display: flex;
@@ -81,11 +81,11 @@
     .overlayRight {
         position: absolute;
         right: 100px;
-        top: calc(50% - 115px);
+        top: calc(50% - 150px);
     }
 }
 
-/* mobile mode */
+/* mobile and tablet mode */
 @media only screen and (max-width: 1150px) {
     .section {
         display: flex;
