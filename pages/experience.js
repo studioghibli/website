@@ -78,7 +78,7 @@ function ExperienceMobile() {
                                 target="_blank"
                                 aria-label="Plastic Free Oceans">                        
                                 <Image
-                                    src="/pfo-1.png"
+                                    src="/pfo.png"
                                     width={600}
                                     height={300}
                                     objectFit='cover'
@@ -95,8 +95,10 @@ function ExperienceMobile() {
                             href="https://www.cs.cornell.edu/courses/cs1110/2020fa/"
                             target="_blank">
                             CS 1110: Introduction to Computing Using Python
-                        </a>. Not only did this help me develop greater teaching skills,
+                        </a>. Not only did this help me develop better teaching skills,
                         it also forced me to relearn and rethink the basics of computer science.
+                        As a consultant, I lead a lab section, hold weekly consulting hours,
+                        and grade assignments throughout the semester.
                     </Card>
                 </Timeline.Item>
                 <Timeline.Item color={"black"}>
@@ -246,7 +248,7 @@ function ExperienceDesktop() {
                                 target="_blank"
                                 aria-label="Plastic Free Oceans">                        
                                 <Image
-                                    src="/pfo-1.png"
+                                    src="/pfo.png"
                                     width={600}
                                     height={300}
                                     objectFit='cover'
@@ -269,8 +271,10 @@ function ExperienceDesktop() {
                             href="https://www.cs.cornell.edu/courses/cs1110/2020fa/"
                             target="_blank">
                             CS 1110: Introduction to Computing Using Python
-                        </a>. Not only did this help me develop greater teaching skills,
+                        </a>. Not only did this help me develop better teaching skills,
                         it also forced me to relearn and rethink the basics of computer science.
+                        As a consultant, I lead a lab section, hold weekly consulting hours,
+                        and grade assignments throughout the semester.
                     </Card>
                 </Timeline.Item>
                 <Timeline.Item color={"black"} label={
@@ -302,12 +306,7 @@ function ExperienceDesktop() {
                     <Label
                         year="2020"
                     >
-                        <div>
-                            Figma
-                        </div>
-                        <div>
-                            React
-                        </div>
+                        React
                     </Label>
                 }>
                     <Card
