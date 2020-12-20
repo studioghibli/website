@@ -1,6 +1,7 @@
 import React from 'react';
 import titleStyles from '../../styles/title.module.css'
 
+
 export default function Card(props) {
     return (
         <div className={titleStyles.container}>

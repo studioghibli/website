@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import experienceStyles from '../styles/Experience.module.css'
-import 'antd/dist/antd.css';
-import Card from './components/Card'
-import Label from './components/Label'
+import 'antd/dist/antd.css'
+
 import Image from 'next/image'
 import { Timeline } from 'antd'
+import Card from './components/Card'
+import Label from './components/Label'
+
+import experienceStyles from '../styles/Experience.module.css'
+
 
 function ExperienceMobile() {
     return (
@@ -23,8 +26,7 @@ function ExperienceMobile() {
                         title="Entering College"
                         text="The first class I took in college was object-oriented programming.
                         As I started to understand computer science from a high-level perspective,
-                        I decided to major in computer science. Below is a project from this class
-                        where I implemented a path-finding algorithm in Java."
+                        I decided to major in computer science."
                     />
                 </Timeline.Item>
                 <Timeline.Item color={"black"}>
@@ -38,7 +40,8 @@ function ExperienceMobile() {
                             href="https://azure.microsoft.com/en-us/"
                             target="_blank">
                             azure.microsoft.com
-                        </a>.
+                        </a>, which can help customers without having to contact a sales
+                        representative.
                     </Card>
                     <div className={experienceStyles.imageWrapper}>
                         <a className={experienceStyles.imageLink}
@@ -125,6 +128,7 @@ function ExperienceMobile() {
     )
 }
 
+
 function ExperienceDesktop() {
     return (
         <div className={experienceStyles.sectionDesktop}>
@@ -193,7 +197,8 @@ function ExperienceDesktop() {
                             href="https://azure.microsoft.com/en-us/"
                             target="_blank">
                             azure.microsoft.com
-                        </a>.
+                        </a>, which can help customers without having to contact a sales
+                        representative.
                     </Card>
                     <div className={experienceStyles.imageWrapper}>
                         <a className={experienceStyles.imageLink}
@@ -322,8 +327,8 @@ function ExperienceDesktop() {
     )
 }
 
-export default function Experience() {
 
+export default function Experience() {
     const [width, setWidth] = useState(0);
     useEffect(() => {
         setWidth(window.innerWidth);

@@ -1,16 +1,13 @@
+import { useEffect, useState } from 'react'
 
 import Image from 'next/image'
-
-import styles from '../styles/Home.module.css'
-
 import About from './about'
 import Experience from './experience'
 import Interests from './interests'
-
 import Nav from './components/Nav'
 import Title from './components/Title'
 
-import { useEffect, useState } from 'react'
+import styles from '../styles/Home.module.css'
 
 
 export default function Home() {
@@ -111,6 +108,9 @@ export default function Home() {
                 <Image src={"/github.svg"} height={30} width={30} alt="GitHub logo" />
               </a>
             </div>
+          </div>
+          <div className={styles.footerLabel}>
+            &copy; Linda He
           </div>
       </footer>
     </div>

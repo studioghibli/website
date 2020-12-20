@@ -5,9 +5,7 @@
     height: 120px;
     width: 100%;
     z-index: 9997;
-    /* transition: all 0.5s; */
     padding: 15px;
-    /* background-color: pink; */
 }
 
 .navbar {

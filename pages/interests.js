@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Card from './components/Card'
-
 import interestsStyles from '../styles/Interests.module.css'
+
 
 export default function Interests() {
     return (

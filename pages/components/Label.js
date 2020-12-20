@@ -1,6 +1,7 @@
 import React from 'react';
 import labelStyles from '../../styles/label.module.css'
 
+
 export default function Label(props) {
     return (
         <div className={labelStyles.card}>

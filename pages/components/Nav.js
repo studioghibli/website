@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 import Head from 'next/head'
 import Link from 'next/link'
-
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 import navStyles from '../../styles/nav.module.css'
+
 
 function NavMobile(props) {
   return (
@@ -13,6 +13,7 @@ function NavMobile(props) {
     </div>
   )
 }
+
 
 function NavDesktop(props) {
   return (
@@ -42,6 +43,7 @@ function NavDesktop(props) {
     </div>
   )
 }
+
 
 export default function Nav(props) {
   const [headerBackgroundColor, setHeaderBackgroundColor] = useState("");

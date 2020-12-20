@@ -1,3 +1,9 @@
+/* general */
+.imageLink:hover {
+    opacity: .5;
+}
+
+/* large screen */
 @media only screen and (min-width: 1450px) {
     .section {
         display: flex;
@@ -38,7 +44,7 @@
     }
 }
 
-
+/* tablet mode */
 @media only screen and (min-width: 1150px) and (max-width: 1450px) {
     .section {
         display: flex;
@@ -79,12 +85,13 @@
     }
 }
 
+/* mobile mode */
 @media only screen and (max-width: 1150px) {
     .section {
         display: flex;
         flex-flow: column;
         background-color: black;
-        padding: 50px 50px 40px 50px;
+        padding: 20px 50px 0px 50px;
     }
 
     .overlayLeft, .overlayRight {
@@ -97,15 +104,10 @@
         display: flex;
         flex-flow: column;
         margin: auto;
-        padding: 40px 0px 40px 0px
+        padding: 40px 0px 30px 0px
     }
 
     .imageLink {
         max-width: 600px;
     }
-}
-
-
-.imageLink:hover {
-    opacity: .5;
 }

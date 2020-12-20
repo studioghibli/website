@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
 import aboutStyles from '../styles/About.module.css'
+
 
 export default function About() {
     return (
-
         <div className={aboutStyles.section}>
             <h1 className={aboutStyles.title}>About Me</h1>
             <hr className={aboutStyles.line} />
