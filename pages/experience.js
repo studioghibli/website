@@ -301,6 +301,13 @@ function ExperienceDesktop() {
                         to Azure, creating a solution that allows customers to
                         migrate their legacy services to Azure."
                     />
+                    <div className={experienceStyles.imageWrapper}>
+                        <video autoPlay={true} controls={false} loop={true} width={'100%'} height={'auto'}
+                            style={{ maxWidth: '600px', marginBottom: '0px' }}    
+                        >
+                            <source src="/cloud.mov" type="video/mp4" />
+                        </video>
+                    </div>
                 </Timeline.Item>
                 <Timeline.Item color={"black"} label={
                     <Label
