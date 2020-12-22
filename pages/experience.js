@@ -303,9 +303,9 @@ function ExperienceDesktop() {
                     />
                     <div className={experienceStyles.imageWrapper}>
                         <video autoPlay={true} controls={false} loop={true} width={'100%'} height={'auto'}
-                            style={{ maxWidth: '600px', marginBottom: '0px' }}    
+                            style={{ maxWidth: '600px', marginTop: '50px' }}    
                         >
-                            <source src="/cloud.mov" type="video/mp4" />
+                            <source src="/cloud.mp4" type="video/mp4" />
                         </video>
                     </div>
                 </Timeline.Item>
