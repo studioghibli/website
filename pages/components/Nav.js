@@ -24,9 +24,9 @@ function NavMobile(props) {
         <nav className={navStyles.mobileNav}>
           <a href="/" className={navStyles.name}>Linda He</a>
           <div className={navStyles.mobileLinks}>
-            <a href="#about">About</a>
-            <a href="#journey">Journey</a>
-            <a href="#passions">Passions</a>
+            <AnchorLink offset='86' href="#about">About</AnchorLink>
+            <AnchorLink offset='86' href="#journey">Journey</AnchorLink>
+            <AnchorLink offset='86' href="#passions">Passions</AnchorLink>
           </div>
           <a className={navStyles.icon} onClick={toggleNav}>
             <Image src='/hamburger.svg'
