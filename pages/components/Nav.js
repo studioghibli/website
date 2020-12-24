@@ -20,7 +20,6 @@ function toggleNav() {
 function NavMobile(props) {
   return (
     <div>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
       <header className={navStyles.mobileHeader} style={{ backgroundColor: props.backgroundColor }}>
         <nav className={navStyles.mobileNav}>
           <a href="/" className={navStyles.name}>Linda He</a>
