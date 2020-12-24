@@ -185,6 +185,10 @@
   }
 
   .namePrecursor {
+    display: none;
+  }
+
+  .name {
     padding-top: 100px;
   }
 }
