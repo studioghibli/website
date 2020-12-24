@@ -51,9 +51,9 @@
 
 /* mobile version */
 .mobileNav {
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
     width: 100%;
     overflow: hidden;
     background-color: black;
@@ -62,8 +62,8 @@
 
 .mobileHeader {
     position: fixed;
-    top: 0;
-    left: 0;
+    /* top: 0;
+    left: 0; */
     height: 86px;
     width: 100%;
     z-index: 900;

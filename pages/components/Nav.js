@@ -22,7 +22,9 @@ function NavMobile(props) {
     <div>
       <header className={navStyles.mobileHeader} style={{ backgroundColor: props.backgroundColor }}>
         <nav className={navStyles.mobileNav}>
-          <a href="/" className={navStyles.name}>Linda He</a>
+          <Link href="/">
+            <a className={navStyles.name}>Linda He</a>
+          </Link>
           <div className={navStyles.mobileLinks}>
             <AnchorLink offset='86' href="#about">About</AnchorLink>
             <AnchorLink offset='86' href="#journey">Journey</AnchorLink>
