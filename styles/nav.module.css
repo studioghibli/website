@@ -1,3 +1,14 @@
+/* general */
+.name {
+    font-family: Didot;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 46px;
+    color: white;
+}
+
+/* desktop version */
 .header {
     position: fixed;
     top: 0;
@@ -5,10 +16,9 @@
     height: 100px;
     width: 100%;
     z-index: 900;
-    padding: 15px;
 }
 
-.navbar {
+.navBar {
     display: flex;
     position: absolute;
     top: 0;
@@ -18,15 +28,6 @@
     padding-right: 50px;
     justify-content: space-between;
     padding-top: 30px;
-}
-
-.name {
-    font-family: Didot;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 46px;
-    color: white;
 }
 
 .anchorLinks {
@@ -45,5 +46,69 @@
 }
 
 .anchorLinks > a:hover {
+    color: #1890ff;
+}
+
+/* mobile version */
+.mobileNav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    position: relative;
+}
+
+.mobileHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 86px;
+    width: 100%;
+    z-index: 900;
+}
+
+.mobileLinks a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.mobileNav a {
+    display: block;
+    padding: 20px 30px;
+}
+
+.icon {
+    background: black;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 30px !important;
+}
+
+.mobileLinks {
+    display: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.mobileLinks {
+    display: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.mobileLinks > a {
+    /* padding-bottom: 20px; */
+    padding: 0px 30px 25px 30px;
+}
+
+.mobileLinks > a:hover {
     color: #1890ff;
 }

@@ -1,15 +1,41 @@
 import React, { useEffect, useState } from 'react'
 
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 import navStyles from '../../styles/nav.module.css'
 
+function toggleNav() {
+  var drop = document.getElementsByClassName(navStyles.mobileLinks)[0];
+
+  if (drop.style.display === "block") {
+    drop.style.display = "none";
+  } else {
+    drop.style.display = "block";
+  }
+}
 
 function NavMobile(props) {
   return (
     <div>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <header className={navStyles.mobileHeader} style={{ backgroundColor: props.backgroundColor }}>
+        <nav className={navStyles.mobileNav}>
+          <a href="/" className={navStyles.name}>Linda He</a>
+          <div className={navStyles.mobileLinks}>
+            <a href="#about">About</a>
+            <a href="#journey">Journey</a>
+            <a href="#passions">Passions</a>
+          </div>
+          <a className={navStyles.icon} onClick={toggleNav}>
+            <Image src='/hamburger.svg'
+              width='25px'
+              height='25px' />
+          </a>
+        </nav>
+      </header>
     </div>
   )
 }
@@ -24,7 +50,7 @@ function NavDesktop(props) {
       </Head>
 
       <header className={navStyles.header} style={{ backgroundColor: props.backgroundColor }}>
-        <nav className={navStyles.navbar}>
+        <nav className={navStyles.navBar}>
           {/* name */}
           <div>
             <Link href="/">
