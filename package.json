@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "node --openssl-legacy-provider node_modules/next/dist/bin/next dev",
+    "build": "node --openssl-legacy-provider node_modules/next/dist/bin/next build",
+    "start": "next start",
+    "postinstall": "node scripts/patch-postcss-exports.js"
   },
   "dependencies": {
     "antd": "^4.8.4",
