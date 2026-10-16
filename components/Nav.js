@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -69,9 +69,51 @@ export default function Nav() {
   const [current, setCurrent] = useCurrentSection();
   const [menuOpen, setMenuOpen] = useState(false);
   const pastHero = usePastHero();
+  const headerRef = useRef(null);
+  const toggleRef = useRef(null);
+
+  /*
+   * Dismissal for the open menu: Escape, or a press anywhere outside the header.
+   *
+   * Without this, the only way out of the dropdown was to tap one of its own
+   * links — a reader who opened it by accident had to navigate somewhere to
+   * close it. Kept inside an effect that only runs while the menu is open, so
+   * the two document listeners don't exist the rest of the time.
+   *
+   * Escape also returns focus to the toggle. That is not decoration: the menu
+   * has just been hidden with `display: none`, so without it focus is left on
+   * an element that is no longer rendered, and a keyboard reader is dropped
+   * back to the top of the document.
+   */
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key !== 'Escape') return;
+      setMenuOpen(false);
+      toggleRef.current?.focus();
+    };
+
+    const onPointerDown = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, [menuOpen]);
 
   return (
-    <header className={`${navStyles.header} ${pastHero || menuOpen ? navStyles.solid : ''}`}>
+    <header
+      ref={headerRef}
+      className={`${navStyles.header} ${pastHero || menuOpen ? navStyles.solid : ''}`}
+    >
       <nav className={navStyles.bar} aria-label="Site">
         {/*
           <Link> renders its own <a> from Next 13 on. The old Next 10 shape was
@@ -115,6 +157,7 @@ export default function Nav() {
           a <div> inside a <button> is invalid. SVGs aren't optimised anyway.
         */}
         <button
+          ref={toggleRef}
           type="button"
           className={navStyles.toggle}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}

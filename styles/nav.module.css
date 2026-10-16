@@ -71,8 +71,9 @@
   background-color: var(--ink);
 }
 
-/* Shown below the desktop breakpoint only; `display: none` keeps it out of the
-   tab order and the accessibility tree above it. */
+/* Shown below the nav's 520px breakpoint only — NOT the content's 900px.
+   `display: none` keeps it out of the tab order and the accessibility tree
+   above that. */
 .toggle {
   display: none;
   align-items: center;
@@ -85,7 +86,19 @@
   cursor: pointer;
 }
 
-/* desktop */
+/*
+ * ⚠️ The nav's breakpoint is deliberately NOT the content breakpoint (M3, P2.5).
+ *
+ * 900px is where the *content* changes: entries go two-column, About goes row.
+ * The nav has no such constraint — it hides three short links, and that row
+ * needs roughly 490px at full size. Gating it on 900px meant every tablet in
+ * both orientations, every landscape phone and every large phone was given a
+ * hamburger for a menu that fits as a plain row.
+ *
+ * So the nav switches at 520px instead. Below that, the toggle and dropdown
+ * are unchanged — which is why this file now has two breakpoints and the other
+ * six stylesheets still have one.
+ */
 @media (min-width: 900px) {
   .links {
     display: flex;
@@ -93,8 +106,38 @@
   }
 }
 
-/* mobile */
-@media (max-width: 899px) {
+/*
+ * 520–899px: the row fits, so show it — a little tighter than desktop.
+ *
+ * `.link` grows via `padding-top` rather than more `padding-bottom`: the active
+ * underline is pinned to `bottom: 0`, so growing only the bottom would push it
+ * away from the text it marks. This widens the tap target without moving the
+ * underline. It lands at ~40px tall, over WCAG 2.5.8's 24px and short of the
+ * 44px comfort target — the 28px gaps carry that, which is what 2.5.8's spacing
+ * exception is for.
+ */
+@media (min-width: 520px) and (max-width: 899px) {
+  .bar {
+    padding: 0 20px;
+  }
+
+  .name {
+    font-size: 26px;
+  }
+
+  .links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .link {
+    padding-top: 9px;
+    font-size: 18px;
+  }
+}
+
+/* mobile — phone widths, below the nav's own breakpoint */
+@media (max-width: 519px) {
   .bar {
     padding: 0 16px;
   }
