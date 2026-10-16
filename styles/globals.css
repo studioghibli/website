@@ -25,8 +25,21 @@ body {
   margin: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+/*
+ * C9 (reduced motion) and M8 (smooth scroll on a long mobile page) are the same
+ * edit. Grepping the whole repo finds **zero** `transition`, `animation` or
+ * `@keyframes` rules, so smooth scrolling is the only motion the site has — the
+ * entire reduced-motion story is this one guard rather than an audit.
+ *
+ * It is a guard rather than a switch-off: `scroll-behavior` defaults to `auto`
+ * (instant), so readers who ask for reduced motion get instant jumps and
+ * everyone else keeps the glide. Declaring `smooth` unconditionally, as before,
+ * ignored the preference entirely.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
