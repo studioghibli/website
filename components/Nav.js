@@ -73,8 +73,14 @@ export default function Nav() {
   return (
     <header className={`${navStyles.header} ${pastHero || menuOpen ? navStyles.solid : ''}`}>
       <nav className={navStyles.bar} aria-label="Site">
-        <Link href="/">
-          <a className={navStyles.name}>Linda He</a>
+        {/*
+          <Link> renders its own <a> from Next 13 on. The old Next 10 shape was
+          <Link><a/></Link>, which now nests an anchor in an anchor: production
+          tolerated it silently and emitted invalid HTML, while only `next dev`
+          refused it outright.
+        */}
+        <Link href="/" className={navStyles.name}>
+          Linda He
         </Link>
 
         <ul id="site-menu" className={`${navStyles.links} ${menuOpen ? navStyles.linksOpen : ''}`}>

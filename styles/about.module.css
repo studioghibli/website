@@ -16,9 +16,17 @@
 /*
  * The 50px white outline frame that used to wrap this photo is gone (D12). It
  * was designed against the dark Cornell backdrop and won't survive a new one.
+ *
+ * `object-fit` / `object-position` used to be props on <Image>; Next removed
+ * both, so the crop is stated in CSS. `max-width` keeps a 350px box inside a
+ * 320px viewport — the source is square, so `height: auto` holds the ratio.
  */
 .image {
   display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: 50% 10%;
 }
 
 .text {

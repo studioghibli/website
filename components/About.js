@@ -17,8 +17,6 @@ export default function About() {
           src="/linda.jpg"
           width={350}
           height={350}
-          objectFit="cover"
-          objectPosition="50% 10%"
           alt="photo of Linda"
         />
       </div>

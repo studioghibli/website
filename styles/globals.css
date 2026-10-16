@@ -46,6 +46,12 @@ body {
  * That also removes the breakpoints: the old desktop block matched on
  * `min-device-width`, which measures the screen rather than the viewport, so a
  * narrow desktop window was given the desktop treatment regardless (M2).
+ *
+ * The URL is root-relative on purpose. `../public/cornell.jpg` also works, but
+ * the bundler then treats it as a module, resolves it, and emits a second
+ * content-hashed copy into `_next/static/media` — 5.2 MB duplicated on every
+ * deploy alongside the identical file `public/` already serves. A leading `/`
+ * is left alone as a plain URL.
  */
 body::before {
   content: '';
@@ -53,7 +59,7 @@ body::before {
   inset: 0;
   z-index: -1;
   background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
-    url('../public/cornell.jpg');
+    url('/cornell.jpg');
   background-position: bottom left;
   background-size: cover;
   background-repeat: no-repeat;
