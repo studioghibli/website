@@ -1,0 +1,18 @@
+/*
+ * Projects renderer — a flat list. Linked heading, description, tech tags,
+ * screenshot. Newest first, which is the array's own order (see lib/entries.js).
+ */
+.list {
+  display: flex;
+  flex-flow: column;
+  gap: 64px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 899px) {
+  .list {
+    gap: 44px;
+  }
+}

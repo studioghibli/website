@@ -1,109 +1,133 @@
-/* general */
-.name {
-    font-family: Didot;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 46px;
-    color: white;
-}
+/*
+ * One nav, one markup tree, adapted by media query — replacing the old NavMobile
+ * / NavDesktop pair and the `width` state that chose between them in JS. That
+ * state was read from `window` during render, so the server always emitted the
+ * mobile variant (D4) and the effect that set it had no dependency array (D3).
+ */
 
-/* desktop version */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100px;
-    width: 100%;
-    z-index: 900;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 900;
 }
 
-.navBar {
+/* Applied once you're past the hero, where the backdrop is no longer the only
+   thing behind the nav. */
+.solid {
+  background-color: var(--surface);
+}
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.name {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--accent);
+}
+
+/* An underline, not a highlight block — it marks position without fighting the
+   backdrop for contrast. */
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--ink);
+}
+
+/* Shown below the desktop breakpoint only; `display: none` keeps it out of the
+   tab order and the accessibility tree above it. */
+.toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* desktop */
+@media (min-width: 900px) {
+  .links {
     display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding-left: 60px;
-    padding-right: 50px;
-    justify-content: space-between;
-    padding-top: 30px;
+    gap: 40px;
+  }
 }
 
-.anchorLinks {
+/* mobile */
+@media (max-width: 899px) {
+  .bar {
+    padding: 0 16px;
+  }
+
+  .name {
+    font-size: 24px;
+  }
+
+  .toggle {
     display: flex;
-    align-items: center;
-}
+  }
 
-.anchorLinks > a {
-    color: white;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 20px;
-    line-height: 29px;
-    padding-left: 40px;
-}
+  .links {
+    display: none;
+  }
 
-.anchorLinks > a:hover {
-    color: #1890ff;
-}
-
-/* mobile version */
-.mobileNav {
-    width: 100%;
-    overflow: hidden;
-    background-color: black;
-    position: relative;
-}
-
-.mobileHeader {
-    position: fixed;
-    height: 86px;
-    width: 100%;
-    z-index: 900;
-}
-
-.mobileLinks a {
-    color: white;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.mobileNav a {
+  /* Declared after `.links` so it wins at equal specificity. */
+  .linksOpen {
     display: block;
-    padding: 20px 30px;
-}
-
-.icon {
-    background: black;
     position: absolute;
-    right: 0;
-    top: 0;
-    padding-top: 30px !important;
-}
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--surface);
+  }
 
-.mobileLinks {
+  .link {
+    display: block;
+    padding: 16px 20px;
+    font-size: 18px;
+  }
+
+  .active::after {
     display: none;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 20px;
-}
-
-.mobileLinks {
-    display: none;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 20px;
-}
-
-.mobileLinks > a {
-    /* padding-bottom: 20px; */
-    padding: 0px 30px 25px 30px;
-}
-
-.mobileLinks > a:hover {
-    color: #1890ff;
+  }
 }

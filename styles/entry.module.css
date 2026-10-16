@@ -1,0 +1,164 @@
+/*
+ * One entry. Rendered by both Timeline and List — they differ only in layout
+ * and whether a rail is drawn, so the internals live here once.
+ */
+
+.entry {
+  display: flex;
+  flex-flow: column;
+  gap: 24px;
+}
+
+/*
+ * The containing block for the stretched heading link below. It is deliberately
+ * NOT the whole card: scoping the overlay to the text column leaves videos
+ * interactive (an overlay over the card would swallow clicks on the player's
+ * controls).
+ */
+.text {
+  position: relative;
+  min-width: 0;
+}
+
+.heading {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/*
+ * `position` must stay off this rule. An absolutely-positioned pseudo-element
+ * is placed against its own element when that element is positioned, so adding
+ * `position: relative` here would collapse the overlay down to the size of the
+ * heading instead of covering the card.
+ */
+.headingLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.headingLink:hover,
+.headingLink:focus-visible {
+  color: var(--accent);
+}
+
+/* Keyboard parity with the hover state above (C11) — focusing any link in the
+   card lights the heading the way hovering the card does. */
+.text:focus-within .headingLink {
+  color: var(--accent);
+}
+
+.headingLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/*
+ * Everything else clickable in the card has to sit above the overlay, or the
+ * stretched heading link would silently eat it. This covers markdown links in
+ * `description` as well as `links[]`, so neither can be added later without
+ * being reachable.
+ */
+.description a,
+.links a {
+  position: relative;
+  z-index: 1;
+}
+
+.role {
+  display: block;
+}
+
+.org {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.description {
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.description p {
+  margin: 0;
+}
+
+.description p + p {
+  margin-top: 0.9em;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.tag {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px 11px;
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.links {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.links li + li {
+  margin-top: 6px;
+}
+
+.extraLink {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.mediaWrapper {
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+/* large screen */
+@media (min-width: 900px) {
+  .entry {
+    flex-flow: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .text {
+    flex: 1 1 auto;
+  }
+
+  .mediaWrapper {
+    flex: 0 0 300px;
+    max-width: 300px;
+  }
+}

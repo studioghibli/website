@@ -1,0 +1,65 @@
+/* general */
+.section {
+  scroll-margin-top: var(--nav-height);
+  background-color: var(--surface);
+}
+
+/*
+ * The page backdrop (globals.css, `body::before`) shows through here. Entries
+ * don't get card chrome to carry that — the gradient's 72% black scrim is what
+ * keeps the text readable over the photo.
+ */
+.open {
+  background-color: transparent;
+}
+
+.band {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 70px 24px 0;
+}
+
+.title {
+  color: var(--ink);
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.rule {
+  width: 300px;
+  height: 3px;
+  border: 0;
+  background-color: var(--ink);
+  margin: 24px 0 56px;
+}
+
+.body {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* mobile mode */
+@media (max-width: 899px) {
+  .band {
+    padding: 56px 20px 0;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .rule {
+    width: 180px;
+    margin: 16px 0 40px;
+  }
+
+  .body {
+    padding: 0 20px 56px;
+  }
+}

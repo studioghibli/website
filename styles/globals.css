@@ -1,9 +1,62 @@
+/*
+ * Design tokens. Deliberately small: the fonts, and the four colors that were
+ * previously repeated as literals across a dozen module files.
+ *
+ * --accent is the blue antd shipped (#1890ff), kept as-is so dropping antd
+ * doesn't quietly restyle the site. It still needs checking against the new
+ * backdrop photo (C13).
+ */
+:root {
+  --ink: #ffffff;
+  --ink-muted: rgba(255, 255, 255, 0.72);
+  --surface: #000000;
+  --rule: rgba(255, 255, 255, 0.28);
+  --accent: #1890ff;
+  --font-display: Didot, serif;
+  --font-heading: Montserrat, sans-serif;
+  --font-body: 'Source Code Pro', monospace;
+  --nav-height: 100px;
+}
+
 /* general */
 html,
 body {
   padding: 0;
   margin: 0;
+}
+
+html {
   scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/*
+ * The full-page backdrop.
+ *
+ * This used to be three blocks that disagreed with each other: the desktop one
+ * sat on `body` behind `background-attachment: fixed` with a 70% scrim, while
+ * the tablet and mobile ones used `body:before` with 72.5%. `fixed` attachment
+ * is broken on iOS Safari anyway (M6), so the fixed-position pseudo-element is
+ * now the single implementation at every width.
+ *
+ * That also removes the breakpoints: the old desktop block matched on
+ * `min-device-width`, which measures the screen rather than the viewport, so a
+ * narrow desktop window was given the desktop treatment regardless (M2).
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
+    url('../public/cornell.jpg');
+  background-position: bottom left;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 a {
@@ -15,93 +68,9 @@ a {
   box-sizing: border-box;
 }
 
-.ant-timeline-item-label {
-  margin-top: -10px;
-  padding-right: 20px;
-  padding-left: 20px;
-}
-
-.ant-timeline-item-right > .ant-timeline-item-content {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  padding: 0px 30px 0px 30px;
-}
-
-.ant-timeline-item-left > .ant-timeline-item-content {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 0px 35px 0px 20px;
-}
-
-/* large screen */
-@media only screen and (min-device-width: 1024px){
-  body {
-    background: linear-gradient(
-      rgba(0, 0, 0, 0.7), 
-      rgba(0, 0, 0, 0.7)
-    ),
-    url("../public/cornell.jpg") bottom left no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-  }
-
-  .ant-timeline-item-left > .ant-timeline-item-content {
-    width: calc(50% - 22px) !important;
-  }
-}
-
-/* tablet mode */
-@media only screen and (min-device-width: 800px) and (max-device-width: 1023px) {
-  body:before {
-    content: "";
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.725), 
-        rgba(0, 0, 0, 0.725)
-      ),
-      url("../public/cornell.jpg") bottom left no-repeat;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-  }
-
-  .ant-timeline-item-left > .ant-timeline-item-content {
-    width: calc(50% - 22px) !important;
-  }
-}
-
 /* mobile mode */
-@media only screen and (max-width: 799px) {
-  body:before {
-    content: "";
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    background: linear-gradient(
-        rgba(0, 0, 0, 0.725), 
-        rgba(0, 0, 0, 0.725)
-      ),
-      url("../public/cornell.jpg") bottom left no-repeat;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-  }
-
-  .ant-timeline-item-left > .ant-timeline-item-content {
-    width: calc(100% - 26px) !important;
+@media (max-width: 899px) {
+  :root {
+    --nav-height: 76px;
   }
 }

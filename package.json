@@ -9,10 +9,8 @@
     "postinstall": "node scripts/patch-postcss-exports.js"
   },
   "dependencies": {
-    "antd": "^4.8.4",
     "next": "10.0.2",
     "react": "17.0.1",
-    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "17.0.1",
     "react-markdown": "^8",
     "sass": "^1.29.0"
