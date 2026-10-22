@@ -4,9 +4,95 @@
  */
 
 .entry {
+  position: relative;
   display: flex;
   flex-flow: column;
   gap: 24px;
+}
+
+/*
+ * The hover/focus highlight Linda asked for on 2026-10-20.
+ *
+ * A pseudo-element rather than a border+padding on `.entry`: that would change
+ * the card's size on hover and shift everything around it. This is out of flow,
+ * so the box can appear and disappear without moving a pixel of content.
+ *
+ * Every entry gets the box now. Only `.linked` entries — the ones with a
+ * destination — also get the tinted background and the external-link mark, so
+ * the highlight never promises a click that isn't there (Linda, 2026-10-20:
+ * *border only, no background change, for timeline objects you can't click*).
+ *
+ * `pointer-events: none` matters more than it looks: the box sits over the
+ * media column too, and without it the video's controls would stop responding.
+ */
+.entry::before {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.entry:hover::before {
+  border-color: var(--rule);
+}
+
+/*
+ * Project cards carry a faint border at rest, the way the link chips do, and
+ * brighten on hover (Linda, 2026-10-20). It reads as a card boundary before
+ * anyone points at it, instead of appearing from nowhere. Experience rows
+ * switch this pseudo-element off entirely in `.split` below.
+ */
+.linked::before {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.linked:hover::before,
+.linked:focus-within::before {
+  border-color: var(--ink-muted);
+  background-color: rgba(255, 255, 255, 0.045);
+}
+
+/* (prefers-reduced-motion is handled at the end of the file, so it outranks
+   every transition declared in between.) */
+
+/*
+ * The external-link mark — the box-with-an-arrow that says "this leaves the
+ * site". It sits inline at the end of the heading's link, so it moves with the
+ * title instead of floating in a corner. Only rendered for entries with a
+ * `url` (see Entry), and only visible on hover or keyboard focus, so it reads
+ * as an affordance rather than decoration.
+ */
+.linkIcon {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  color: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.linked:hover .linkIcon,
+.linked:focus-within .linkIcon {
+  opacity: 1;
+}
+
+/*
+ * Project cards only. Padding is inside the element's box, so the card keeps
+ * its outer size and `::before` keeps its position; the content moves inward by
+ * 16px, which doubles the gap between the text and the hover border from 16px
+ * to 32px. Linda, 2026-10-20: *keep the border where it is, make the inner box
+ * smaller.*
+ *
+ * Not applied in the timeline: there the entry sits against the rail and its
+ * top must stay level with the year label.
+ */
+.padded {
+  padding: 16px;
 }
 
 /*
@@ -24,7 +110,7 @@
   margin: 0 0 14px;
   color: var(--ink);
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.3;
 }
@@ -75,7 +161,8 @@
 
 .org {
   display: block;
-  font-size: 20px;
+  margin-top: 4px;
+  font-size: 17px;
   font-weight: 400;
   color: var(--ink-muted);
 }
@@ -83,7 +170,7 @@
 .description {
   color: var(--ink-muted);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.7;
 }
 
@@ -93,6 +180,28 @@
 
 .description p + p {
   margin-top: 0.9em;
+}
+
+/*
+ * Links inside a description — always blue, always underlined, always marked as
+ * leaving the site (Linda, 2026-10-20). The underline is what makes them
+ * findable when skimming; colour alone would not survive a reader who can't
+ * distinguish it.
+ */
+.description a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* The mark itself: inline, inheriting the link's blue, nudged down so it sits
+   on the text's baseline rather than floating at the x-height. */
+.inlineIcon {
+  display: inline-block;
+  margin-left: 4px;
+  vertical-align: -1px;
+  color: currentColor;
 }
 
 .tags {
@@ -114,22 +223,55 @@
   line-height: 1.5;
 }
 
+/*
+ * Link chips under an entry. `links[]` is an array, so several render side by
+ * side and wrap when the column runs out (Linda, 2026-10-20). They are visual
+ * siblings of the tech tags above: same border and radius, but a chip is a
+ * link, so it also carries the external-link mark and a hover state.
+ */
 .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   list-style: none;
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   padding: 0;
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.links li + li {
-  margin-top: 6px;
 }
 
 .extraLink {
-  color: var(--accent);
-  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 5px 12px;
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+/* Same treatment as the project card's hover: the border firms up and the
+   chip takes the same faint background tint. */
+.extraLink:hover,
+.extraLink:focus-visible {
+  border-color: var(--ink-muted);
+  background-color: rgba(255, 255, 255, 0.045);
+  color: var(--ink);
+}
+
+.extraLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The mark inherits the chip's colour, so it mutes at rest and brightens with
+   the label on hover. */
+.chipIcon {
+  display: inline-block;
+  flex: none;
+  color: currentColor;
 }
 
 .mediaWrapper {
@@ -145,7 +287,72 @@
   border-radius: 3px;
 }
 
-/* large screen */
+/*
+ * Clickable media — restored 2026-10-20 at Linda's request ("I miss clicking
+ * the photo"). The anchor wraps the image, so the link's accessible name is the
+ * image's alt text and the destination is a normal link in the tab order.
+ *
+ * The darkening is an overlay rather than `filter: brightness()`: filters make
+ * the browser re-composite the image every frame, and this is a screenshot, not
+ * a hero. `overflow: hidden` clips the overlay to the image's own 3px radius.
+ */
+.mediaLink {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.mediaLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.mediaLink:hover::after,
+.mediaLink:focus-visible::after {
+  opacity: 1;
+}
+
+.mediaLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/*
+ * A `links` entry that duplicates a media destination. In the default view the
+ * image carries the link, so the text copy would be a second link to the same
+ * place; the accessible view removes images, so the text becomes the only way
+ * through and this rule hands it back.
+ *
+ * `data-accessible` is set on <html> by the P8 toggle in _document.js.
+ */
+.linkForMedia {
+  display: none;
+}
+
+:global(html[data-accessible='on']) .mediaWrapper {
+  display: none;
+}
+
+:global(html[data-accessible='on']) .linkForMedia {
+  display: list-item;
+}
+
+/*
+ * Media on the left, text on the right — the Projects renderer.
+ *
+ * Experience no longer uses this: its photo sits under the description inside
+ * the split layout below, which overrides the width. `order` rather than
+ * `flex-flow: row-reverse`: it says which child moves rather than reversing the
+ * whole row, so anything added later isn't silently flipped with it. The DOM
+ * stays text-then-media, so a screen reader still meets the heading before the
+ * image, and the phone layout — a column, where order has nothing to reorder —
+ * keeps media after the text exactly as it was.
+ */
 @media (min-width: 900px) {
   .entry {
     flex-flow: row;
@@ -158,7 +365,121 @@
   }
 
   .mediaWrapper {
+    order: -1;
     flex: 0 0 300px;
     max-width: 300px;
+  }
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Split layout — the Experience renderer.
+ *
+ * Linda, 2026-10-20: year, job title, company and tech tags on the left; the
+ * description (and any media) on the right. The entry draws both columns, so
+ * the grid, the rail and the dot live here rather than in timeline.module.css.
+ *
+ * The rail is still the right column's own left border, not an absolutely
+ * positioned line, so nothing has to keep a separate x-coordinate in sync with
+ * the grid. The dot is parked on it: -5px centres 9px of dot on 1px of border.
+ * ---------------------------------------------------------------------------
+ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Positioned so a linked heading's stretched overlay covers the metadata
+   column rather than the whole card — the media below stays clickable. */
+.split .meta {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.split .year {
+  margin: 0 0 10px;
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  /* The label never wraps, and tabular figures keep the years the same width. */
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.split .heading {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.split .org {
+  font-size: 15px;
+}
+
+.split .tags {
+  margin-top: 12px;
+}
+
+.split .text {
+  position: relative;
+}
+
+/*
+ * No hover box in the timeline. Linda, 2026-10-20: *get rid of that border
+ * altogether* — the row-wide box and the description-sized one both read as
+ * noise next to a rail that already groups the entry.
+ *
+ * `.entry::before` is switched off here rather than removed, because Projects
+ * still uses it. `.split::before` has the same specificity as `.entry::before`
+ * and comes later in the file, so it wins.
+ */
+.split::before {
+  display: none;
+}
+
+/* Media sits under the description at the width of the prose column, not in a
+   lane of its own. */
+.split .mediaWrapper {
+  max-width: 520px;
+  margin-top: 24px;
+}
+
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: var(--rail-width, 300px) 1fr;
+    gap: 0;
+  }
+
+  /* Right-aligned so the year, title, company and tags all end hard against
+     the rail — one edge to scan down, which is what makes a timeline readable. */
+  .split .meta {
+    align-items: flex-end;
+    padding: 2px 32px 0 0;
+    text-align: right;
+  }
+
+  .split .tags {
+    justify-content: flex-end;
+  }
+
+  .split .text {
+    /* Hug the content rather than stretching to the row height. */
+    align-self: start;
+    padding: 0 0 0 32px;
+  }
+}
+
+/* `focus-within` above covers the keyboard path (C11); this covers the readers
+   who asked not to be moved. Last in the file on purpose: at equal specificity
+   it has to come after every transition it is switching off. */
+@media (prefers-reduced-motion: reduce) {
+  .entry::before,
+  .linkIcon,
+  .mediaLink::after,
+  .extraLink {
+    transition: none;
   }
 }
