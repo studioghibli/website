@@ -1,65 +1,64 @@
-/* general */
 .section {
   scroll-margin-top: var(--nav-height);
-  background-color: var(--surface);
-}
-
-/*
- * The page backdrop (globals.css, `body::before`) shows through here. Entries
- * don't get card chrome to carry that — the gradient's 72% black scrim is what
- * keeps the text readable over the photo.
- */
-.open {
-  background-color: transparent;
 }
 
 .band {
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding: 70px 24px 0;
+  padding: 54px 24px 0;
+  background-color: var(--surface);
+}
+
+/* Transparent band showing page backdrop photo when showBackground is true. */
+.open {
+  background-color: transparent;
+}
+
+.ground {
+  background-color: var(--surface);
 }
 
 .title {
   color: var(--ink);
   margin: 0;
   font-family: var(--font-heading);
-  font-size: 44px;
+  font-size: var(--text-xl);
   font-weight: 600;
   line-height: 1.15;
   text-align: center;
 }
 
 .rule {
-  width: 300px;
-  height: 3px;
+  width: 240px;
+  height: 2px;
   border: 0;
   background-color: var(--ink);
-  margin: 24px 0 56px;
+  margin: 18px 0 40px;
 }
 
 .body {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 24px 80px;
+  padding: 48px 24px 64px;
 }
 
 /* mobile mode */
 @media (max-width: 899px) {
   .band {
-    padding: 56px 20px 0;
+    padding: 44px 20px 0;
   }
 
   .title {
-    font-size: 32px;
+    font-size: 24px;
   }
 
   .rule {
-    width: 180px;
-    margin: 16px 0 40px;
+    width: 140px;
+    margin: 12px 0 32px;
   }
 
   .body {
-    padding: 0 20px 56px;
+    padding: 44px 20px 44px;
   }
 }

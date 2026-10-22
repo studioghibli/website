@@ -1,11 +1,4 @@
-/*
- * Design tokens. Deliberately small: the fonts, and the four colors that were
- * previously repeated as literals across a dozen module files.
- *
- * --accent is the blue antd shipped (#1890ff), kept as-is so dropping antd
- * doesn't quietly restyle the site. It still needs checking against the new
- * backdrop photo (C13).
- */
+/* Core design tokens and global styles. */
 :root {
   --ink: #ffffff;
   --ink-muted: rgba(255, 255, 255, 0.72);
@@ -15,27 +8,29 @@
   --font-display: Didot, serif;
   --font-heading: Montserrat, sans-serif;
   --font-body: 'Source Code Pro', monospace;
-  --nav-height: 100px;
+  --nav-height: 84px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 30px;
+  --text-2xl: 48px;
+  --text-3xl: 64px;
 }
 
-/* general */
 html,
 body {
   padding: 0;
   margin: 0;
 }
 
-/*
- * C9 (reduced motion) and M8 (smooth scroll on a long mobile page) are the same
- * edit. Grepping the whole repo finds **zero** `transition`, `animation` or
- * `@keyframes` rules, so smooth scrolling is the only motion the site has — the
- * entire reduced-motion story is this one guard rather than an audit.
- *
- * It is a guard rather than a switch-off: `scroll-behavior` defaults to `auto`
- * (instant), so readers who ask for reduced motion get instant jumps and
- * everyone else keeps the glide. Declaring `smooth` unconditionally, as before,
- * ignored the preference entirely.
- */
+/* Guard smooth scrolling behind prefers-reduced-motion. */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -47,32 +42,14 @@ body {
   font-family: var(--font-body);
 }
 
-/*
- * The full-page backdrop.
- *
- * This used to be three blocks that disagreed with each other: the desktop one
- * sat on `body` behind `background-attachment: fixed` with a 70% scrim, while
- * the tablet and mobile ones used `body:before` with 72.5%. `fixed` attachment
- * is broken on iOS Safari anyway (M6), so the fixed-position pseudo-element is
- * now the single implementation at every width.
- *
- * That also removes the breakpoints: the old desktop block matched on
- * `min-device-width`, which measures the screen rather than the viewport, so a
- * narrow desktop window was given the desktop treatment regardless (M2).
- *
- * The URL is root-relative on purpose. `../public/cornell.jpg` also works, but
- * the bundler then treats it as a module, resolves it, and emits a second
- * content-hashed copy into `_next/static/media` — 5.2 MB duplicated on every
- * deploy alongside the identical file `public/` already serves. A leading `/`
- * is left alone as a plain URL.
- */
+/* Fixed backdrop image with dark scrim. */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
-    url('/cornell.jpg');
+    url('/background.jpg');
   background-position: bottom left;
   background-size: cover;
   background-repeat: no-repeat;
@@ -87,9 +64,8 @@ a {
   box-sizing: border-box;
 }
 
-/* mobile mode */
 @media (max-width: 899px) {
   :root {
-    --nav-height: 76px;
+    --nav-height: 64px;
   }
 }

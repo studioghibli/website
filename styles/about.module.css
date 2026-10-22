@@ -1,11 +1,8 @@
-/*
- * About is static prose, not a data kind — no entries, no renderer. Its text is
- * unchanged from the old about.js; A2 rewrites it in P7.
- */
+/* About section layout and typography. */
 .binder {
   display: flex;
   flex-flow: column;
-  gap: 32px;
+  gap: var(--space-lg);
 }
 
 .leftPane {
@@ -13,14 +10,6 @@
   justify-content: center;
 }
 
-/*
- * The 50px white outline frame that used to wrap this photo is gone (D12). It
- * was designed against the dark Cornell backdrop and won't survive a new one.
- *
- * `object-fit` / `object-position` used to be props on <Image>; Next removed
- * both, so the crop is stated in CSS. `max-width` keeps a 350px box inside a
- * 320px viewport — the source is square, so `height: auto` holds the ratio.
- */
 .image {
   display: block;
   max-width: 100%;
@@ -33,7 +22,7 @@
   margin: 0;
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 20px;
+  font-size: var(--text-lg);
   line-height: 1.65;
 }
 
@@ -41,7 +30,7 @@
   .binder {
     flex-flow: row;
     align-items: center;
-    gap: 48px;
+    gap: var(--space-xl);
   }
 
   .leftPane {
