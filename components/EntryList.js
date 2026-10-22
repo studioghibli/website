@@ -1,14 +1,8 @@
-import Entry from './Entry';
+import ProjectEntry from './ProjectEntry';
 import { byStartYear } from '../lib/entries';
 import listStyles from '../styles/list.module.css';
 
-/*
- * Projects renderer. Flat list, newest first.
- *
- * The year is not shown here — every project shown has one, and the description
- * and screenshot carry more than a bare year does. If that stops being true,
- * Timeline's `yearRange` is the thing to reuse rather than reinvent.
- */
+/* Renders projects list, sorted newest-first. */
 export default function EntryList({ entries }) {
   const ordered = [...entries].sort(byStartYear);
 
@@ -16,7 +10,7 @@ export default function EntryList({ entries }) {
     <ol className={listStyles.list}>
       {ordered.map((entry) => (
         <li key={entry.id}>
-          <Entry entry={entry} />
+          <ProjectEntry entry={entry} padded />
         </li>
       ))}
     </ol>
