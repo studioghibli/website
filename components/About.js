@@ -2,12 +2,7 @@ import Image from 'next/image';
 
 import aboutStyles from '../styles/about.module.css';
 
-/*
- * Static prose — deliberately not a data kind, so it has no entry in
- * `data/content.js` and no renderer. Content is unchanged from the old
- * pages/about.js; A2 rewrites it and folds in a line on IDP and Rise Dance,
- * which were a section of their own until P2 dropped it.
- */
+/* Static prose section. */
 export default function About() {
   return (
     <div className={aboutStyles.binder}>
@@ -16,17 +11,18 @@ export default function About() {
           className={aboutStyles.image}
           src="/linda.jpg"
           width={350}
-          height={350}
-          alt="photo of Linda"
+          height={465}
+          alt="Linda wearing a baseball cap with two tennis balls."
         />
       </div>
       <div className={aboutStyles.rightPane}>
         <p className={aboutStyles.text}>
-          Hi! I&apos;m Linda, a senior studying computer science at Cornell University. I love
-          solving problems, whether it&apos;s working on a coding project, writing mathematical
-          proofs, or figuring out whether a straw has one or two holes (it&apos;s two). I am
-          pursuing a career in software development and I&apos;m particularly interested in cloud
-          platforms and services.
+          Hi! I’m Linda, a backend software engineer who loves untangling complex problems.
+          Whether it’s breaking a legacy service into microservices, figuring out how to sew a
+          hat (pictured on the left), or debating whether a straw has one hole or two (I say
+          two), I enjoy taking something complicated and breaking it down into manageable
+          pieces. I’m especially drawn to the challenge of making systems more efficient,
+          reliable, and easier to understand.
         </p>
       </div>
     </div>

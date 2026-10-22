@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import Image from 'next/image';
 import Link from 'next/link';
 
 import navStyles from '../styles/nav.module.css';
@@ -11,17 +10,7 @@ const SECTIONS = [
   { id: 'projects', label: 'Projects' },
 ];
 
-/*
- * Which section the reader is currently in, for the underline.
- *
- * A band across the middle of the viewport is the whole mechanism: whichever
- * section crosses it becomes current. Preferred over scroll arithmetic because
- * it needs to know nothing about section heights or nav offsets, and it doesn't
- * run on every scroll event the way a scroll handler would.
- *
- * In the hero nothing is current, since the hero sits above the first section.
- * That's the intended state rather than a gap to fill.
- */
+/* Track active section via IntersectionObserver for nav underline. */
 function useCurrentSection() {
   const [current, setCurrent] = useState(null);
 
@@ -47,101 +36,70 @@ function useCurrentSection() {
   return [current, setCurrent];
 }
 
-/* The nav floats over the hero photo and takes a solid ground once you're past
-   it. Boolean state, so repeated scroll events past the threshold don't
-   re-render. */
-function usePastHero() {
+/* Track scroll state (pastHero, overPhoto) for nav background and border rules. */
+function useBarState(headerRef) {
   const [pastHero, setPastHero] = useState(false);
+  const [overPhoto, setOverPhoto] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.15);
+    const photoBands = Array.from(document.querySelectorAll('[data-photo-band]'));
+
+    const onScroll = () => {
+      const nowPastHero = window.scrollY > window.innerHeight * 0.15;
+      const height = headerRef.current ? headerRef.current.getBoundingClientRect().height : 0;
+      const foot = height - 1;
+
+      setPastHero(nowPastHero);
+      setOverPhoto(
+        nowPastHero &&
+          photoBands.some((band) => {
+            const rect = band.getBoundingClientRect();
+            return rect.top < foot && rect.bottom > foot;
+          })
+      );
+    };
 
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  return pastHero;
-}
-
-export default function Nav() {
-  const [current, setCurrent] = useCurrentSection();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const pastHero = usePastHero();
-  const headerRef = useRef(null);
-  const toggleRef = useRef(null);
-
-  /*
-   * Dismissal for the open menu: Escape, or a press anywhere outside the header.
-   *
-   * Without this, the only way out of the dropdown was to tap one of its own
-   * links — a reader who opened it by accident had to navigate somewhere to
-   * close it. Kept inside an effect that only runs while the menu is open, so
-   * the two document listeners don't exist the rest of the time.
-   *
-   * Escape also returns focus to the toggle. That is not decoration: the menu
-   * has just been hidden with `display: none`, so without it focus is left on
-   * an element that is no longer rendered, and a keyboard reader is dropped
-   * back to the top of the document.
-   */
-  useEffect(() => {
-    if (!menuOpen) return undefined;
-
-    const onKeyDown = (event) => {
-      if (event.key !== 'Escape') return;
-      setMenuOpen(false);
-      toggleRef.current?.focus();
-    };
-
-    const onPointerDown = (event) => {
-      if (headerRef.current && !headerRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('keydown', onKeyDown);
-    document.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('resize', onScroll);
 
     return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
-  }, [menuOpen]);
+  }, [headerRef]);
+
+  return { pastHero, overPhoto };
+}
+
+/* Responsive navigation bar with active section indicator and mobile support. */
+export default function Nav() {
+  const headerRef = useRef(null);
+  const [current, setCurrent] = useCurrentSection();
+  const { pastHero, overPhoto } = useBarState(headerRef);
+  const currentLabel = SECTIONS.find(({ id }) => id === current)?.label;
 
   return (
     <header
       ref={headerRef}
-      className={`${navStyles.header} ${pastHero || menuOpen ? navStyles.solid : ''}`}
+      className={`${navStyles.header} ${pastHero ? navStyles.pastHero : ''} ${
+        overPhoto ? navStyles.overPhoto : ''
+      } ${current ? navStyles.inSection : ''}`}
     >
       <nav className={navStyles.bar} aria-label="Site">
-        {/*
-          <Link> renders its own <a> from Next 13 on. The old Next 10 shape was
-          <Link><a/></Link>, which now nests an anchor in an anchor: production
-          tolerated it silently and emitted invalid HTML, while only `next dev`
-          refused it outright.
-        */}
         <Link href="/" className={navStyles.name}>
           Linda He
         </Link>
 
-        <ul id="site-menu" className={`${navStyles.links} ${menuOpen ? navStyles.linksOpen : ''}`}>
+        <ul className={navStyles.links}>
           {SECTIONS.map(({ id, label }) => (
             <li key={id}>
-              {/*
-                Plain anchors, no smooth-scroll library: `scroll-behavior` on
-                <html> and `scroll-margin-top` on each section already do what
-                the library's `offset` prop did (globals.css, section.module.css).
-              */}
               <a
                 href={`#${id}`}
                 className={`${navStyles.link} ${current === id ? navStyles.active : ''}`}
                 aria-current={current === id ? 'location' : undefined}
                 onClick={() => {
-                  // Also set on click: the observer only reports once the scroll
-                  // has actually arrived, which is a beat too late for feedback.
                   setCurrent(id);
-                  setMenuOpen(false);
                 }}
               >
                 {label}
@@ -150,24 +108,7 @@ export default function Nav() {
           ))}
         </ul>
 
-        {/*
-          A <button>, not the old href-less <a onClick> — that was unfocusable
-          and unannounced, so the menu could not be opened from a keyboard (C1).
-          The icon is a plain <img>: next/image wraps its output in a <div>, and
-          a <div> inside a <button> is invalid. SVGs aren't optimised anyway.
-        */}
-        <button
-          ref={toggleRef}
-          type="button"
-          className={navStyles.toggle}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          aria-controls="site-menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hamburger.svg" width="24" height="24" alt="" />
-        </button>
+        <span className={navStyles.current}>{currentLabel}</span>
       </nav>
     </header>
   );

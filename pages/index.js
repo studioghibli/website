@@ -10,11 +10,6 @@ import content from '../data/content';
 import { byKind } from '../lib/entries';
 import heroStyles from '../styles/hero.module.css';
 
-/*
- * Splitting by `kind` is all this page knows about the content. Ordering, year
- * formatting and every entry's markup belong to the renderers, so adding an
- * entry is a one-file edit in data/content.js.
- */
 const experience = byKind(content, 'experience');
 const projects = byKind(content, 'project');
 
@@ -28,23 +23,33 @@ export default function Home() {
 
       <Nav />
 
-      {/*
-        The page's only <h1>. Everything below it is <h2> sections and <h3>
-        entries — the old layout emitted an <h1> per section heading and per
-        card, about eleven per page (C5).
-      */}
       <section className={heroStyles.hero} aria-label="Introduction">
         <div className={heroStyles.intro}>
-          <p className={heroStyles.namePrecursor}>Hi, my name is</p>
           <h1 className={heroStyles.name}>Linda He.</h1>
+          <p className={heroStyles.role}>Backend Software Engineer</p>
           <p className={heroStyles.bio}>
-            I&apos;m a senior studying computer science at Cornell University. I spend most of my
-            time coding, teaching, and dancing.
+            I love creating things, from reliable backend systems to handmade sewing projects.
           </p>
         </div>
         <div className={heroStyles.social}>
-          <SocialLinks size={50} />
+          <SocialLinks size={24} muted />
         </div>
+        <p className={heroStyles.credit}>
+          <svg
+            className={heroStyles.creditIcon}
+            viewBox="0 0 24 24"
+            width="13"
+            height="13"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              fill="currentColor"
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"
+            />
+          </svg>
+          Rattlesnake Lake
+        </p>
       </section>
 
       <main>
