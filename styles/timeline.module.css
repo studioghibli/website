@@ -25,7 +25,7 @@
     content: '';
     position: absolute;
     left: calc(var(--rail-width) - 0.5px);
-    top: 12px;
+    top: calc(2px + (14px * 1.5 / 2));
     bottom: -17px;
     width: 1px;
     background-color: var(--rule);
@@ -37,12 +37,12 @@
     height: 0;
   }
 
-  /* Timeline dot centered precisely on the rail */
+  /* Timeline dot centered precisely on the year label center via calc() */
   .item::after {
     content: '';
     position: absolute;
     left: calc(var(--rail-width) - 4.5px);
-    top: 12px;
+    top: calc(2px + (14px * 1.5 / 2) - 4.5px);
     width: 9px;
     height: 9px;
     border-radius: 50%;

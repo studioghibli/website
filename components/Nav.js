@@ -10,7 +10,7 @@ const SECTIONS = [
   { id: 'projects', label: 'Projects' },
 ];
 
-/* Track active section via IntersectionObserver for nav underline. */
+/* Track active section via IntersectionObserver for nav underline, resetting to null in hero. */
 function useCurrentSection() {
   const [current, setCurrent] = useState(null);
 
@@ -30,7 +30,18 @@ function useCurrentSection() {
 
     targets.forEach((target) => observer.observe(target));
 
-    return () => observer.disconnect();
+    const onScroll = () => {
+      if (window.scrollY < window.innerHeight * 0.3) {
+        setCurrent(null);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return [current, setCurrent];
@@ -84,7 +95,7 @@ export default function Nav() {
       ref={headerRef}
       className={`${navStyles.header} ${pastHero ? navStyles.pastHero : ''} ${
         overPhoto ? navStyles.overPhoto : ''
-      } ${current ? navStyles.inSection : ''}`}
+      } ${current ? navScrollActive(current) : ''}`}
     >
       <nav className={navStyles.bar} aria-label="Site">
         <Link href="/" className={navStyles.name}>
@@ -112,4 +123,8 @@ export default function Nav() {
       </nav>
     </header>
   );
+}
+
+function navScrollActive(current) {
+  return current ? navStyles.inSection : '';
 }

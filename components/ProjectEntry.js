@@ -2,28 +2,23 @@ import Description from './Description';
 import ExternalLinkMark from './ExternalLinkMark';
 import entryStyles from '../styles/entry.module.css';
 
-/* Renders media item, wrapping in a link if item.href is present. */
+/* Renders media item (image or video). */
 export function EntryMedia({ item }) {
-  const media =
-    item.type === 'video' ? (
+  if (item.type === 'video') {
+    return (
       <video className={entryStyles.media} controls loop muted playsInline poster={item.poster}>
         <source src={item.src} type="video/mp4" />
       </video>
-    ) : (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img className={entryStyles.media} src={item.src} alt={item.alt} />
     );
-
-  if (!item.href) return media;
+  }
 
   return (
-    <a className={entryStyles.mediaLink} href={item.href}>
-      {media}
-    </a>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className={entryStyles.media} src={item.src} alt={item.alt} />
   );
 }
 
-/* Project card component. */
+/* Project card component. Renders project entries in a flat list with end year underneath heading, media, tech tags, and extra links. */
 export default function ProjectEntry({ entry, padded = false }) {
   const hasMedia = entry.media && entry.media.length > 0;
   const mediaHrefs = new Set((entry.media || []).map((item) => item.href).filter(Boolean));
@@ -99,6 +94,7 @@ export default function ProjectEntry({ entry, padded = false }) {
     >
       <div className={entryStyles.text}>
         <h3 className={entryStyles.heading}>{headingNode}</h3>
+        {entry.endYear && <p className={entryStyles.projectYear}>{entry.endYear}</p>}
         {description}
         {tags}
         {links}

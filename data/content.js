@@ -5,11 +5,19 @@ const content = [
     id: 'la-niao',
     kind: 'project',
     startYear: '2026',
+    endYear: '2026',
     name: 'lā niào',
     url: 'https://github.com/studioghibli/la-niao',
     description:
       'Inspired by hydration apps like Waterllama, I built a small app to track bathroom visits. It was also my first time experimenting with AI tools to help bring a new project to life.',
     tech: ['Kotlin', 'Jetpack Compose', 'Room', 'Claude Code'],
+    media: [
+      {
+        type: 'image',
+        src: '/la-niao.png',
+        alt: 'Logo of lā niào app.',
+      },
+    ],
   },
   {
     id: 'microsoft-swe-ii',
@@ -20,6 +28,7 @@ const content = [
     org: 'Microsoft',
     description:
       'I owned a new compliance-focused consent service end-to-end, from design and implementation to testing and production rollout. Working with compliance stakeholders and partner teams taught me how to navigate complex requirements and build solutions that meet diverse needs.',
+    tech: ['Microservices', 'Observability', 'System Design', 'REST API'],
   },
   {
     id: 'microsoft-swe',
@@ -30,6 +39,7 @@ const content = [
     org: 'Microsoft',
     description:
       'I worked on backend systems powering subscriptions across Microsoft products, where reliability, data accuracy, and customer privacy were essential. I modernized a legacy revenue-recognition process, reducing delays from days to seconds, and improved data workflows and deployment reliability.',
+    tech: ['Event-Driven Architecture', 'Azure', 'Kubernetes', 'Docker'],
   },
   {
     id: 'microsoft-swe-intern',
@@ -50,8 +60,15 @@ const content = [
     name: 'LEAT',
     url: 'https://leat.netlify.app/about',
     description:
-      'This time, I joined two teams: LEAT and a prosecutorial misconduct tracker. The goal was to create sustainable ways to track and convey data about law enforcement and prosecutorial misconduct. I helped design and implement the webpage.',
+      'The goal of LEAT is to create sustainable ways to track and convey data about law enforcement and prosecutorial misconduct. I helped design and implement the webpage for a hackathon.',
     tech: ['React'],
+    media: [
+      {
+        type: 'image',
+        src: '/leat.png',
+        alt: 'Screenshot of LEAT webpage visualizing law enforcement data.',
+      },
+    ],
   },
   {
     id: 'microsoft-explore-intern',

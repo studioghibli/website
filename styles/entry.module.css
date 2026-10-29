@@ -278,13 +278,74 @@
   display: flex;
   flex-flow: column;
   gap: 16px;
+  max-width: 200px;
 }
 
 .media {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 3px;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/*
+ * A `links` entry that duplicates a media destination. In the default view the
+ * image carries the link, so the text copy would be a second link to the same
+ * place; the accessible view removes images, so the text becomes the only way
+ * through and this rule hands it back.
+ *
+ * `data-accessible` is set on <html> by the P8 toggle in _document.js.
+ */
+.linkForMedia {
+  display: none;
+}
+
+:global(html[data-accessible='on']) .mediaWrapper {
+  display: none;
+}
+
+:global(html[data-accessible='on']) .linkForMedia {
+  display: list-item;
+}
+
+/*
+ * Media on the left, text on the right — the Projects renderer.
+ *
+ * Experience no longer uses this: its photo sits under the description inside
+ * the split layout below, which overrides the width. `order` rather than
+ * `flex-flow: row-reverse`: it says which child moves rather than reversing the
+ * whole row, so anything added later isn't silently flipped with it. The DOM
+ * stays text-then-media, so a screen reader still meets the heading before the
+ * image, and the phone layout — a column, where order has nothing to reorder —
+ * keeps media after the text exactly as it was.
+ */
+@media (min-width: 900px) {
+  .entry {
+    flex-flow: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .text {
+    flex: 1 1 auto;
+  }
+
+  .mediaWrapper {
+    order: -1;
+    flex: 0 0 116px;
+    max-width: 116px;
+  }
+}
+
+.projectYear {
+  margin: -8px 0 14px;
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
 }
 
 /*
@@ -294,13 +355,14 @@
  *
  * The darkening is an overlay rather than `filter: brightness()`: filters make
  * the browser re-composite the image every frame, and this is a screenshot, not
- * a hero. `overflow: hidden` clips the overlay to the image's own 3px radius.
+ * a hero. `overflow: hidden` clips the overlay to the image's own 6px radius.
  */
 .mediaLink {
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: 3px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
 }
 
 .mediaLink::after {
@@ -366,8 +428,8 @@
 
   .mediaWrapper {
     order: -1;
-    flex: 0 0 300px;
-    max-width: 300px;
+    flex: 0 0 240px;
+    max-width: 240px;
   }
 }
 

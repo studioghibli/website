@@ -18,7 +18,7 @@ export default function About() {
       <div className={aboutStyles.rightPane}>
         <p className={aboutStyles.text}>
           Hi! I’m Linda, a backend software engineer who loves untangling complex problems.
-          Whether it’s breaking a legacy service into microservices, figuring out how to sew a
+          Whether it’s breaking a legacy service into microservices, figuring out how to make a tennis
           hat (pictured on the left), or debating whether a straw has one hole or two (I say
           two), I enjoy taking something complicated and breaking it down into manageable
           pieces. I’m especially drawn to the challenge of making systems more efficient,
